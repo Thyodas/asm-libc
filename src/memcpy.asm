@@ -1,23 +1,23 @@
 bits 64
-global memset
+global memcpy
 
 section .text
-memset:
+memcpy:
     ; rdi, rsi, rdx, rcx
     push    rbp
     mov     rbp, rsp
 
-    mov rcx, rdi
+    mov rax, rdi
     cmp rdx, 0
     jz  end
     loop:
-        mov byte [rcx], sil
-        inc rcx
+        mov cl, byte [rsi]
+        mov byte [rdi], cl
+        inc rdi
+        inc rsi
         dec rdx
         jnz  loop
     end:
-
-    mov rax, rdi
 
     mov     rsp, rbp
     pop     rbp
