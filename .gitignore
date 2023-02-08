@@ -1,0 +1,14 @@
+*.hi
+*.o
+*.pdf
+
+.idea/
+
+a.out
+main.c
+
+*.txt
+test.c
+*.so
+src/*.o
+/*.asm
