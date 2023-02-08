@@ -7,15 +7,15 @@ strlen:
     push    rbp
     mov     rbp, rsp
 
-    xor     rcx, rcx
+    xor     rax, rax
     cmp byte [rdi], 0
     jz end
     loop:
-        inc rcx
-        cmp byte [rdi+rcx], 0
+        inc rax
+        inc rdi
+        cmp byte [rdi], 0
         jnz loop
     end:
-    mov rax, rcx
 
     mov     rsp, rbp
     pop     rbp

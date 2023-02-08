@@ -1,8 +1,8 @@
 bits 64
-global strchr
+global strrchr
 
 section .text
-strchr:
+strrchr:
     ; rdi, rsi, rdx, rcx
     push    rbp
     mov     rbp, rsp
@@ -25,7 +25,8 @@ strchr:
         jmp loop
         found:
             mov rax, rdi
-            jmp end
+            cmp byte [rdi], 0
+            jnz loop
     end:
 
     mov     rsp, rbp
