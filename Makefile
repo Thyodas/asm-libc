@@ -13,6 +13,7 @@ SRC = src/strlen.asm	\
 	  src/strcmp.asm	\
 	  src/memmove.asm	\
 	  src/strncmp.asm	\
+	  src/strcasecmp.asm\
 
 OBJ = $(SRC:.asm=.o)
 
@@ -21,7 +22,7 @@ NAME = libasm.so
 INCLUDE = ../include
 
 %.o: %.asm
-	@nasm -f elf64 -g -o $@ $<
+	@nasm -f elf64 -w+all -g -o $@ $<
 	@echo "Nasm $<"
 
 all:
@@ -30,7 +31,7 @@ all:
 	@$(MAKE) -s $(NAME)
 
 $(NAME): $(OBJ)
-		 ld -fPIC -shared -o $(NAME) $(OBJ)
+		 ld -fPIC -g -shared -o $(NAME) $(OBJ)
 
 clean:
 	   rm -f $(OBJ)

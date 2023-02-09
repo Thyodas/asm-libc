@@ -6,6 +6,8 @@ strncmp:
     ; rdi, rsi, rdx, rcx
     push    rbp
     mov     rbp, rsp
+    push r10
+    push r11
 
     xor     rax, rax
     xor     rcx, rcx
@@ -38,6 +40,8 @@ strncmp:
     movzx   rcx, r11b
     sub     rax, rcx
 
+    pop r11
+    pop r10
     mov     rsp, rbp
     pop     rbp
     ret
