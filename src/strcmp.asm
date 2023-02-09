@@ -7,33 +7,28 @@ strcmp:
     push    rbp
     mov     rbp, rsp
 
-    xor rdx, rdx
+    xor     rax, rax
+    xor     rcx, rcx
     loop:
-        mov dx, word [rdi]
-        sub dx, word [rsi]
+        mov r10b, byte [rdi]
+        mov r11b, byte [rsi]
 
-        cmp word [rdi], 0
-        jz end
-        cmp word [rsi], 0
-        jz end
+        cmp r10b, 0
+        jz  end
+        cmp r11b, 0
+        jz  end
+        cmp r10b, r11b
+        jne  end
 
         inc rdi
         inc rsi
-        jmp  loop
+        jmp loop
     end:
 
-    xor rax, rax
-    mov rax, 0
-    cmp dx, 0
-    je endprog
+    movzx   rax, r10b
+    movzx   rcx, r11b
+    sub     rax, rcx
 
-    mov rax, -1
-    cmp dx, 0
-    jl endprog
-
-    mov rax, 1
-
-    endprog:
     mov     rsp, rbp
     pop     rbp
     ret
