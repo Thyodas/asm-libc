@@ -1,39 +1,24 @@
 bits 64
-global strcmp
+global memmove
 
 section .text
-strcmp:
+memmove:
     ; rdi, rsi, rdx, rcx
     push    rbp
     mov     rbp, rsp
 
-    xor rdx, rdx
-    loop:
-        mov dx, word [rdi]
-        sub dx, word [rsi]
+    mov rax, rdi
+    mov rcx, rdx
+    cld
+    cmp rdi, rsi
+    jl start
+    add rdi, rdx
+    add rsi, rdx
+    std
 
-        cmp word [rdi], 0
-        jz end
-        cmp word [rsi], 0
-        jz end
+    start:
+        repnz movsb
 
-        inc rdi
-        inc rsi
-        jmp  loop
-    end:
-
-    xor rax, rax
-    mov rax, 0
-    cmp dx, 0
-    je endprog
-
-    mov rax, -1
-    cmp dx, 0
-    jl endprog
-
-    mov rax, 1
-
-    endprog:
     mov     rsp, rbp
     pop     rbp
     ret
