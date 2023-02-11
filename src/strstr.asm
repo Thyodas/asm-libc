@@ -85,6 +85,9 @@ strstr:
     jz      end
 
     loop:
+        cmp     byte [rdi], 0
+        jz      loopEnd
+
         push    rdi
         push    rsi
         push    rdx
