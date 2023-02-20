@@ -12,6 +12,7 @@ memmove:
     cld
     cmp rdi, rsi
     jl start
+    dec rdx
     add rdi, rdx
     add rsi, rdx
     std
