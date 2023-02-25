@@ -1,8 +1,10 @@
 bits 64
 global strchr
+global index
 
 section .text
 strchr:
+index:
     ; rdi, rsi, rdx, rcx
     push    rbp
     mov     rbp, rsp
